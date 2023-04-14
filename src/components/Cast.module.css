@@ -1,0 +1,23 @@
+.cast_text {
+    margin: 10px;
+}
+.cast_items {
+    margin-left: 20px;
+}
+.cast_card {
+    display: flex;
+    outline: 1px solid black;
+    width: 200px;
+    height: 250px;
+    margin-top: 30px;
+    align-items: center;
+    flex-direction: column;
+    align-content: flex-start;
+    justify-content: flex-start;
+    text-align: center;
+}
+.cast_image {
+    margin-top: 15px;
+    width: 100px;
+    height: 150px;
+}

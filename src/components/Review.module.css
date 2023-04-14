@@ -1,0 +1,18 @@
+.review_items {
+    margin-left: 30px;
+    list-style: circle;
+}
+.review_card {
+    display: flex;
+    width: 95%;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+.review_author {
+    text-decoration: none;
+    padding-top: 15px;
+}
+.review_content {
+    margin-top: 10px;
+    padding-left: 20px;
+}

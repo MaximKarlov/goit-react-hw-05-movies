@@ -2,6 +2,7 @@ import { useParams, Outlet } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import API from '../Api/API';
+import CSS from '../pages/Movie.module.css';
 
 const baseUrlImg = 'https://image.tmdb.org/t/p/w500';
 
@@ -12,55 +13,59 @@ export const MovieDetails = () => {
     const [titles, setTitles] = useState('');
     const [overview, setOverview] = useState('');
     const [genres, setGenres] = useState('');
-    const [vote_count, setVoteCount] = useState('');
+    const [voteAverage, setVoteAverage] = useState('');
 
     useEffect(() => {
         API.details(movieId).then(response => {
-            const { poster_path, title, overview, genres, vote_count } = response.data;
+            console.log(response.data);
+            const { poster_path, title, overview, genres, vote_average } = response.data;
             setPoster(baseUrlImg + poster_path);
             setTitles(title);
             setOverview(overview);
             setGenres(genres);
-            setVoteCount(vote_count);
+            setVoteAverage(vote_average);
         });
     }, [movieId]);
 
-    // let posterImg = baseUrlImg + poster_path;
-
     return (
         <div>
-            <img src={poster} alt={titles} />
-            <ul>
-                <li>
-                    <h2>{titles}</h2>
-                    <p>{vote_count}</p>
-                </li>
-                <li>
-                    <h3>Overviews</h3>
-                    <p>{overview}</p>
-                </li>
-                <li>
-                    <h3>Genres</h3>
-                    <p>
-                        {genres &&
-                            genres.map(el => {
-                                return <span key={el.name}>{el.name}</span>;
-                            })}
-                    </p>
-                </li>
-            </ul>
-            <div>
-                <h3>Aditional information </h3>
-                <ul>
+            <div className={CSS.movie_info}>
+                <img src={poster} alt={titles} className={CSS.poster} />
+                <ul className={CSS.items_info}>
                     <li>
-                        <Link to="cast">Cast</Link>
+                        <h2 className={CSS.item_title}>{titles}</h2>
+                        <p className={CSS.item_text}>User score: {(voteAverage * 10).toFixed(0)}%</p>
                     </li>
                     <li>
+                        <h3 className={CSS.item_title}>Overviews</h3>
+                        <p className={CSS.item_text}>{overview}</p>
+                    </li>
+                    <li>
+                        <h3 className={CSS.item_title}>Genres</h3>
+
+                        {genres &&
+                            genres.map(el => {
+                                return (
+                                    <p key={el.name} className={CSS.genres_text}>
+                                        * {el.name}
+                                    </p>
+                                );
+                            })}
+                    </li>
+                </ul>
+            </div>
+            <div className={CSS.aditional}>
+                <h3 className={CSS.item_title}>Aditional information </h3>
+                <ul className={CSS.aditional_items}>
+                    <li className={CSS.aditional_item}>
+                        <Link to="cast">Cast</Link>
+                    </li>
+                    <li className={CSS.aditional_item}>
                         <Link to="review">Review</Link>
                     </li>
                 </ul>
-                <Outlet />
             </div>
+            <Outlet />
         </div>
     );
 };
