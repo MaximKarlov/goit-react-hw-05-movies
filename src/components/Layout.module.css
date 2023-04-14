@@ -1,0 +1,19 @@
+.linked {
+    text-decoration: none;
+}
+/* .linked:visited {
+    color: black;
+} */
+.linked:active {
+    color: tomato;
+}
+.layout_items {
+    display: flex;
+    padding: 25px;
+}
+.layout_item {
+    padding: 0px 20px;
+}
+.active {
+    color: yellow;
+}

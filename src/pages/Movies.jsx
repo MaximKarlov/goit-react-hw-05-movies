@@ -1,3 +1,8 @@
 export const Movies = () => {
-    return <h1>Its two pages try</h1>;
+    return (
+        <div>
+            <input type="text" id="movie" />
+            <button> SEARCH</button>
+        </div>
+    );
 };
