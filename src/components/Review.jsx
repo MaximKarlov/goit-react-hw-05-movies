@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import API from '../Api/API';
 import CSS from '../components/Review.module.css';
 
-export const Review = () => {
+const Review = () => {
     const { movieId } = useParams();
     const [review, setReview] = useState([]);
 
@@ -11,7 +11,6 @@ export const Review = () => {
         API.reviews(movieId).then(response => setReview(response.data.results));
     }, [movieId]);
 
-    console.log(review);
     return (
         <div>
             <ul className={CSS.review_items}>
@@ -27,3 +26,4 @@ export const Review = () => {
         </div>
     );
 };
+export default Review;

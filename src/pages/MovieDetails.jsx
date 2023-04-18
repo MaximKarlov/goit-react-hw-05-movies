@@ -1,23 +1,23 @@
-import { useParams, Outlet } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useParams, Outlet, useLocation } from 'react-router-dom';
+import { useEffect, useState, Suspense, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import API from '../Api/API';
 import CSS from '../pages/Movie.module.css';
 
 const baseUrlImg = 'https://image.tmdb.org/t/p/w500';
 
-export const MovieDetails = () => {
+const MovieDetails = () => {
+    const location = useLocation();
     const { movieId } = useParams();
-    // const [movie, setMovie] = useState([]);
     const [poster, setPoster] = useState('');
     const [titles, setTitles] = useState('');
     const [overview, setOverview] = useState('');
     const [genres, setGenres] = useState('');
     const [voteAverage, setVoteAverage] = useState('');
+    const backLinkLocation = useRef(location.state?.from ?? '/');
 
     useEffect(() => {
         API.details(movieId).then(response => {
-            console.log(response.data);
             const { poster_path, title, overview, genres, vote_average } = response.data;
             setPoster(baseUrlImg + poster_path);
             setTitles(title);
@@ -29,6 +29,9 @@ export const MovieDetails = () => {
 
     return (
         <div>
+            <Link to={backLinkLocation.current}>
+                <button>Go back</button>
+            </Link>
             <div className={CSS.movie_info}>
                 <img src={poster} alt={titles} className={CSS.poster} />
                 <ul className={CSS.items_info}>
@@ -43,14 +46,17 @@ export const MovieDetails = () => {
                     <li>
                         <h3 className={CSS.item_title}>Genres</h3>
 
-                        {genres &&
-                            genres.map(el => {
-                                return (
-                                    <p key={el.name} className={CSS.genres_text}>
-                                        * {el.name}
-                                    </p>
-                                );
-                            })}
+                        {genres && (
+                            <ul>
+                                {genres.map(el => {
+                                    return (
+                                        <li key={el.name} className={CSS.genres_text}>
+                                            {el.name}
+                                        </li>
+                                    );
+                                })}
+                            </ul>
+                        )}
                     </li>
                 </ul>
             </div>
@@ -58,14 +64,22 @@ export const MovieDetails = () => {
                 <h3 className={CSS.item_title}>Aditional information </h3>
                 <ul className={CSS.aditional_items}>
                     <li className={CSS.aditional_item}>
-                        <Link to="cast">Cast</Link>
+                        <Link to="cast" className={CSS.home_link}>
+                            Cast
+                        </Link>
                     </li>
                     <li className={CSS.aditional_item}>
-                        <Link to="review">Review</Link>
+                        <Link to="review" className={CSS.home_link}>
+                            Review
+                        </Link>
                     </li>
                 </ul>
             </div>
-            <Outlet />
+            <Suspense fallback={<div>"LOADING...."</div>}>
+                <Outlet />
+            </Suspense>
         </div>
     );
 };
+
+export default MovieDetails;

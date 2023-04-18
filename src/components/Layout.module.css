@@ -1,15 +1,26 @@
 .linked {
     text-decoration: none;
+    color: black;
+}
+.linked:hover {
+    cursor: pointer;
+    color: blue;
 }
 /* .linked:visited {
     color: black;
 } */
-.linked:active {
+/* .linked:focus {
     color: tomato;
+} */
+.active {
+    color: red;
 }
+
 .layout_items {
     display: flex;
     padding: 25px;
+    border-bottom: 1px solid gray;
+    list-style: none;
 }
 .layout_item {
     padding: 0px 20px;

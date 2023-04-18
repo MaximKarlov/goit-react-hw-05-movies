@@ -5,7 +5,7 @@ import CSS from '../components/Cast.module.css';
 
 const baseUrlImg = 'https://image.tmdb.org/t/p/w500';
 
-export const Cast = () => {
+const Cast = () => {
     const { movieId } = useParams();
     const [cast, setCast] = useState([]);
 
@@ -27,3 +27,5 @@ export const Cast = () => {
         </div>
     );
 };
+
+export default Cast;

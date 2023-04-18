@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import API from '../Api/API';
+import CSS from '../pages/Movie.module.css';
 
-export const Home = () => {
+const Home = () => {
+    const location = useLocation();
     const [popularMovies, setPopularMovies] = useState([]);
     useEffect(() => {
         API.trending()
@@ -14,17 +16,19 @@ export const Home = () => {
             });
     }, []);
 
-    console.log('Popular movies', popularMovies);
-
     return (
         <div>
-            <ul>
+            <ul className={CSS.home_items}>
                 {popularMovies.map(({ id, title, name }) => (
                     <li key={id}>
-                        <Link to={`${id}`}>{title || name}</Link>
+                        <Link to={`${id}`} state={{ from: location }} className={CSS.home_link}>
+                            {title || name}
+                        </Link>
                     </li>
                 ))}
             </ul>
         </div>
     );
 };
+
+export default Home;

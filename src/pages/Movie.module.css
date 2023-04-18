@@ -1,34 +1,62 @@
+.home_link {
+    text-decoration: none;
+    color: black;
+}
+.home_link:hover,
+.home_link:focus {
+    color: tomato;
+}
 .movie_info {
     border-bottom: 3px solid rgb(128, 128, 128, 0.4);
     padding: 30px 30px;
     /* margin-bottom: 20px; */
     display: flex;
 }
+.movies_input {
+    margin-left: 30px;
+    padding: 5px;
+}
 .poster {
-    width: 250px;
-    height: 400px;
+    width: 200px;
+    height: 250px;
 }
 .items_info {
     margin-left: 50px;
+    list-style: none;
 }
 .item_text,
 .genres_text {
     padding: 10px;
 }
 .genres_text {
-    list-style: inside;
+    list-style: circle;
 }
 .item_title {
-    /* margin-top: 15px; */
+    margin: 0px;
 }
 .aditional {
     border-bottom: 3px solid rgb(128, 128, 128, 0.4);
     padding: 20px 50px;
 }
 .aditional_items {
-    list-style: decimal;
 }
 .aditional_item {
     list-style: inside;
     padding: 5px 10px;
+}
+button {
+    padding: 5px;
+    margin: 20px 0px 0px 20px;
+}
+
+button:hover {
+    color: green;
+}
+button:active {
+    color: blue;
+}
+.home_items {
+    /* display: flex; */
+    margin-top: 10px;
+    margin-left: 30px;
 }

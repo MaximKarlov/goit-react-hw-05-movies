@@ -1,11 +1,13 @@
+import { lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { Home } from '../pages/Home';
-import { MovieDetails } from '../pages/MovieDetails';
-import { Movies } from '../pages/Movies';
 import { Layout } from './Layout';
-import { Cast } from '../components/Cast';
-import { Review } from '../components/Review';
 // import { NotFound } from '../pages/NotFound';
+
+const Home = lazy(() => import('../pages/Home'));
+const MovieDetails = lazy(() => import('../pages/MovieDetails'));
+const Cast = lazy(() => import('../components/Cast'));
+const Review = lazy(() => import('../components/Review'));
+const Movies = lazy(() => import('../pages/Movies'));
 
 export const App = () => {
     return (
@@ -17,6 +19,10 @@ export const App = () => {
                     <Route path="review" element={<Review />} />
                 </Route>
                 <Route path="/movies" element={<Movies />} />
+                <Route path="/movies/:movieId" element={<MovieDetails />}>
+                    <Route path="cast" element={<Cast />} />
+                    <Route path="review" element={<Review />} />
+                </Route>
             </Route>
         </Routes>
     );
