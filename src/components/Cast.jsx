@@ -15,7 +15,7 @@ const Cast = () => {
                 console.log(response);
                 setCast(response.data.cast);
             },
-            error => console.log('NEW ERROR', error)
+            error => console.log('NEW ERROR', error.message)
         );
     }, [movieId]);
 

@@ -21,7 +21,7 @@ const Movies = () => {
                 .then(elem => {
                     setSearchMovies(elem.results);
                 })
-                .catch(error => console.log(error));
+                .catch(error => console.log(error.message));
         }
     }, [location.search]);
 
@@ -32,16 +32,16 @@ const Movies = () => {
                     response => {
                         return response.data;
                     },
-                    err => console.log(err)
+                    err => console.log(err.message)
                 )
 
                 .then(
                     elem => {
                         setSearchMovies(elem.results);
                     },
-                    err => console.log(err)
+                    err => console.log(err.message)
                 )
-                .catch(error => console.log(error));
+                .catch(error => console.log(error.message));
             prevSearch = searchingWord;
         }
         setSearchStart(false);
