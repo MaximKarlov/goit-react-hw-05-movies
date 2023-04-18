@@ -1,10 +1,17 @@
+.linked .active {
+    color: red;
+}
 .linked {
     text-decoration: none;
     color: black;
 }
-.linked:hover {
+.linked:hover,
+.linked:focus {
     cursor: pointer;
     color: blue;
+}
+.active {
+    color: red;
 }
 /* .linked:visited {
     color: black;
@@ -12,9 +19,6 @@
 /* .linked:focus {
     color: tomato;
 } */
-.active {
-    color: red;
-}
 
 .layout_items {
     display: flex;

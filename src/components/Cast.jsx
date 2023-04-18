@@ -10,7 +10,10 @@ const Cast = () => {
     const [cast, setCast] = useState([]);
 
     useEffect(() => {
-        API.credits(movieId).then(response => setCast(response.data.cast));
+        API.credits(movieId).then(
+            response => setCast(response.data.cast),
+            error => console.error(error)
+        );
     }, [movieId]);
 
     return (

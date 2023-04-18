@@ -20,7 +20,8 @@ const Movies = () => {
                 })
                 .then(elem => {
                     setSearchMovies(elem.results);
-                });
+                })
+                .catch(error => console.log(error));
         }
     }, [location.search]);
 
@@ -32,8 +33,8 @@ const Movies = () => {
                 })
                 .then(elem => {
                     setSearchMovies(elem.results);
-                });
-            // location.search = searchingWord;
+                })
+                .catch(error => console.log(error));
             prevSearch = searchingWord;
         }
         setSearchStart(false);

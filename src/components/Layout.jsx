@@ -14,7 +14,7 @@ export const Layout = () => {
                 <li>
                     <NavLink to="/movies" className={CSS.linked}>
                         Movies
-                    </NavLink>{' '}
+                    </NavLink>
                 </li>
             </ul>
             <Suspense fallback={<div>"LOADING..."</div>}>

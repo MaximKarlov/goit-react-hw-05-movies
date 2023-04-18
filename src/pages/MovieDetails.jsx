@@ -17,14 +17,16 @@ const MovieDetails = () => {
     const backLinkLocation = useRef(location.state?.from ?? '/');
 
     useEffect(() => {
-        API.details(movieId).then(response => {
-            const { poster_path, title, overview, genres, vote_average } = response.data;
-            setPoster(baseUrlImg + poster_path);
-            setTitles(title);
-            setOverview(overview);
-            setGenres(genres);
-            setVoteAverage(vote_average);
-        });
+        API.details(movieId)
+            .then(response => {
+                const { poster_path, title, overview, genres, vote_average } = response.data;
+                setPoster(baseUrlImg + poster_path);
+                setTitles(title);
+                setOverview(overview);
+                setGenres(genres);
+                setVoteAverage(vote_average);
+            })
+            .catch(error => console.log(error));
     }, [movieId]);
 
     return (

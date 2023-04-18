@@ -13,7 +13,8 @@ const Home = () => {
             })
             .then(elem => {
                 setPopularMovies(elem.results);
-            });
+            })
+            .catch(error => console.log(error));
     }, []);
 
     return (
