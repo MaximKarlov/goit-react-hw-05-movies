@@ -28,12 +28,19 @@ const Movies = () => {
     useEffect(() => {
         if (searchStart) {
             API.searching(searchingWord)
-                .then(response => {
-                    return response.data;
-                })
-                .then(elem => {
-                    setSearchMovies(elem.results);
-                })
+                .then(
+                    response => {
+                        return response.data;
+                    },
+                    err => console.log(err)
+                )
+
+                .then(
+                    elem => {
+                        setSearchMovies(elem.results);
+                    },
+                    err => console.log(err)
+                )
                 .catch(error => console.log(error));
             prevSearch = searchingWord;
         }
@@ -57,7 +64,7 @@ const Movies = () => {
             <button type="submit" onClick={handleClick}>
                 SEARCH
             </button>
-            {searchMovies && (
+            {searchMovies.length > 0 ? (
                 <ul className={CSS.home_items}>
                     {searchMovies.map(({ id, title, name }) => (
                         <li key={id}>
@@ -67,6 +74,10 @@ const Movies = () => {
                         </li>
                     ))}
                 </ul>
+            ) : (
+                <div>
+                    <h3 className={CSS.item_text}>Співпадінь не знайдено по слову "{searchingWord}"</h3>
+                </div>
             )}
         </div>
     );

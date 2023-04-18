@@ -11,8 +11,11 @@ const Cast = () => {
 
     useEffect(() => {
         API.credits(movieId).then(
-            response => setCast(response.data.cast),
-            error => console.error(error)
+            response => {
+                console.log(response);
+                setCast(response.data.cast);
+            },
+            error => console.log('NEW ERROR', error)
         );
     }, [movieId]);
 
@@ -21,7 +24,7 @@ const Cast = () => {
             <ul className={CSS.cast_items}>
                 {cast.map(({ cast_id, original_name, character, profile_path }) => (
                     <li key={cast_id} className={CSS.cast_card}>
-                        <img src={baseUrlImg + profile_path} alt={original_name} className={CSS.cast_image}></img>
+                        <img src={profile_path ? baseUrlImg + profile_path : ''} alt={original_name} className={CSS.cast_image}></img>
                         <p className={CSS.cast_text}>{original_name}</p>
                         <p className={CSS.cast_text}>Character: {character}</p>
                     </li>
