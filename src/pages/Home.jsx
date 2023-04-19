@@ -22,7 +22,7 @@ const Home = () => {
             <ul className={CSS.home_items}>
                 {popularMovies.map(({ id, title, name }) => (
                     <li key={id}>
-                        <Link to={`${id}`} state={{ from: location }} className={CSS.home_link}>
+                        <Link to={`/movies/${id}`} state={{ from: location }} className={CSS.home_link}>
                             {title || name}
                         </Link>
                     </li>
